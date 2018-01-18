@@ -1,6 +1,6 @@
 /*
     Modbus.h - Header for Modbus Base Library
-    Copyright (C) 2014 André Sarmento Barbosa
+    Copyright (C) 2014 AndrÃ© Sarmento Barbosa
 */
 #include "Arduino.h"
 
@@ -11,9 +11,7 @@
 #define MAX_FRAME   128
 //#define USE_HOLDING_REGISTERS_ONLY
 
-typedef unsigned int u_int;
-
-//Function Codes
+// Function Codes
 enum {
     MB_FC_READ_COILS       = 0x01, // Read Coils (Output) Status 0xxxx
     MB_FC_READ_INPUT_STAT  = 0x02, // Read Input Status (Discrete Inputs) 1xxxx
