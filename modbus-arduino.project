@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Project Name="modbus-arduino" InternalType="">
+  <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00020001N0005Debug0000000000000001N0007Release000000000000]]>
+    </Plugin>
+    <Plugin Name="CMakePlugin">
+      <![CDATA[[{
+  "name": "Debug",
+  "enabled": false,
+  "buildDirectory": "build",
+  "sourceDirectory": "$(ProjectPath)",
+  "generator": "",
+  "buildType": "",
+  "arguments": [],
+  "parentProject": ""
+ }, {
+  "name": "Release",
+  "enabled": false,
+  "buildDirectory": "build",
+  "sourceDirectory": "$(ProjectPath)",
+  "generator": "",
+  "buildType": "",
+  "arguments": [],
+  "parentProject": ""
+ }]]]>
+    </Plugin>
+  </Plugins>
+  <VirtualDirectory Name="libraries">
+    <VirtualDirectory Name="ModbusSerial">
+      <VirtualDirectory Name="examples">
+        <VirtualDirectory Name="Lamp">
+          <File Name="libraries/ModbusSerial/examples/Lamp/Lamp.ino"/>
+        </VirtualDirectory>
+        <VirtualDirectory Name="Servo">
+          <File Name="libraries/ModbusSerial/examples/Servo/Servo.ino"/>
+        </VirtualDirectory>
+        <VirtualDirectory Name="Switch">
+          <File Name="libraries/ModbusSerial/examples/Switch/Switch.ino"/>
+        </VirtualDirectory>
+        <VirtualDirectory Name="TempSensor">
+          <File Name="libraries/ModbusSerial/examples/TempSensor/TempSensor.ino"/>
+        </VirtualDirectory>
+        <VirtualDirectory Name="LampDimmer">
+          <File Name="libraries/ModbusSerial/examples/LampDimmer/LampDimmer.ino"/>
+        </VirtualDirectory>
+      </VirtualDirectory>
+      <File Name="libraries/ModbusSerial/ModbusSerial.cpp"/>
+      <File Name="libraries/ModbusSerial/ModbusSerial.h"/>
+      <File Name="libraries/ModbusSerial/library.properties"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="ModbusIP_ESP8266AT">
+      <VirtualDirectory Name="examples">
+        <VirtualDirectory Name="Lamp">
+          <File Name="libraries/ModbusIP_ESP8266AT/examples/Lamp/Lamp.ino"/>
+        </VirtualDirectory>
+        <VirtualDirectory Name="Servo">
+          <File Name="libraries/ModbusIP_ESP8266AT/examples/Servo/Servo.ino"/>
+        </VirtualDirectory>
+        <VirtualDirectory Name="Switch">
+          <File Name="libraries/ModbusIP_ESP8266AT/examples/Switch/Switch.ino"/>
+        </VirtualDirectory>
+        <VirtualDirectory Name="TempSensor">
+          <File Name="libraries/ModbusIP_ESP8266AT/examples/TempSensor/TempSensor.ino"/>
+        </VirtualDirectory>
+      </VirtualDirectory>
+      <File Name="libraries/ModbusIP_ESP8266AT/ModbusIP_ESP8266AT.cpp"/>
+      <File Name="libraries/ModbusIP_ESP8266AT/ModbusIP_ESP8266AT.h"/>
+      <File Name="libraries/ModbusIP_ESP8266AT/library.properties"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="ModbusIP_ENC28J60">
+      <VirtualDirectory Name="examples">
+        <VirtualDirectory Name="Lamp">
+          <File Name="libraries/ModbusIP_ENC28J60/examples/Lamp/Lamp.ino"/>
+        </VirtualDirectory>
+        <VirtualDirectory Name="Servo">
+          <File Name="libraries/ModbusIP_ENC28J60/examples/Servo/Servo.ino"/>
+        </VirtualDirectory>
+        <VirtualDirectory Name="Switch">
+          <File Name="libraries/ModbusIP_ENC28J60/examples/Switch/Switch.ino"/>
+        </VirtualDirectory>
+        <VirtualDirectory Name="TempSensor">
+          <File Name="libraries/ModbusIP_ENC28J60/examples/TempSensor/TempSensor.ino"/>
+        </VirtualDirectory>
+      </VirtualDirectory>
+      <File Name="libraries/ModbusIP_ENC28J60/ModbusIP_ENC28J60.cpp"/>
+      <File Name="libraries/ModbusIP_ENC28J60/ModbusIP_ENC28J60.h"/>
+      <File Name="libraries/ModbusIP_ENC28J60/library.properties"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="ModbusIP">
+      <VirtualDirectory Name="examples">
+        <VirtualDirectory Name="Lamp">
+          <File Name="libraries/ModbusIP/examples/Lamp/Lamp.ino"/>
+        </VirtualDirectory>
+        <VirtualDirectory Name="Servo">
+          <File Name="libraries/ModbusIP/examples/Servo/Servo.ino"/>
+        </VirtualDirectory>
+        <VirtualDirectory Name="Switch">
+          <File Name="libraries/ModbusIP/examples/Switch/Switch.ino"/>
+        </VirtualDirectory>
+        <VirtualDirectory Name="TempSensor">
+          <File Name="libraries/ModbusIP/examples/TempSensor/TempSensor.ino"/>
+        </VirtualDirectory>
+      </VirtualDirectory>
+      <File Name="libraries/ModbusIP/ModbusIP.cpp"/>
+      <File Name="libraries/ModbusIP/ModbusIP.h"/>
+      <File Name="libraries/ModbusIP/library.properties"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="Modbus">
+      <File Name="libraries/Modbus/Modbus.cpp"/>
+      <File Name="libraries/Modbus/Modbus.h"/>
+      <File Name="libraries/Modbus/library.properties"/>
+    </VirtualDirectory>
+  </VirtualDirectory>
+  <Description/>
+  <Dependencies/>
+  <Settings Type="Executable">
+    <GlobalSettings>
+      <Compiler Options="" C_Options="" Assembler="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
+    <Configuration Name="Debug" CompilerType="Cross GCC ( avr )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g" C_Options="-g" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="" IntermediateDirectory="" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="yes">
+        <Target Name="Program">make program</Target>
+        <Target Name="Fuse">make fuse</Target>
+        <Target Name="Lock">make lock</Target>
+        <Target Name="DistClean">make distclean</Target>
+        <Target Name="Ice">make debug-ice</Target>
+        <Target Name="Debug">make debug</Target>
+        <RebuildCommand>make rebuild</RebuildCommand>
+        <CleanCommand>make clean</CleanCommand>
+        <BuildCommand>make DEBUG=ON</BuildCommand>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory>$(ProjectPath)</WorkingDirectory>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+    <Configuration Name="Release" CompilerType="Cross GCC ( avr )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="" C_Options="" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="-O2" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="" IntermediateDirectory="" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="no" IsGUIProgram="no" IsEnabled="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="yes">
+        <Target Name="Program">make program</Target>
+        <Target Name="Fuse">make fuse</Target>
+        <Target Name="Lock">make lock</Target>
+        <Target Name="Distclean">make distclean</Target>
+        <RebuildCommand>make rebuild</RebuildCommand>
+        <CleanCommand>make clean</CleanCommand>
+        <BuildCommand>make</BuildCommand>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory>$(ProjectPath)</WorkingDirectory>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+  </Settings>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
+  <VirtualDirectory Name="modbus-arduino">
+    <File Name="LICENSE.txt"/>
+    <File Name="README.md"/>
+    <File Name="README_pt_BR.md"/>
+    <File Name="TODO.txt"/>
+  </VirtualDirectory>
+</CodeLite_Project>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Workspace Name="modbus-arduino" Database="" Version="10.0.0">
+  <Environment>
+    <![CDATA[]]>
+  </Environment>
+  <Project Name="modbus-arduino" Path="modbus-arduino.project" Active="No"/>
+  <Project Name="doc" Path="doc/doc.project" Active="Yes"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="no">
+      <Environment/>
+      <Project Name="test_led" ConfigName="Debug"/>
+      <Project Name="modbus-arduino" ConfigName="Debug"/>
+      <Project Name="doc" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
+      <Project Name="test_led" ConfigName="Release"/>
+      <Project Name="modbus-arduino" ConfigName="Release"/>
+      <Project Name="doc" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>

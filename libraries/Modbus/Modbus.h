@@ -13,38 +13,45 @@
 
 // Function Codes
 enum {
-    MB_FC_READ_COILS       = 0x01, // Read Coils (Output) Status 0xxxx
-    MB_FC_READ_INPUT_STAT  = 0x02, // Read Input Status (Discrete Inputs) 1xxxx
-    MB_FC_READ_REGS        = 0x03, // Read Holding Registers 4xxxx
-    MB_FC_READ_INPUT_REGS  = 0x04, // Read Input Registers 3xxxx
-    MB_FC_WRITE_COIL       = 0x05, // Write Single Coil (Output) 0xxxx
-    MB_FC_WRITE_REG        = 0x06, // Preset Single Register 4xxxx
-    MB_FC_WRITE_COILS      = 0x0F, // Write Multiple Coils (Outputs) 0xxxx
-    MB_FC_WRITE_REGS       = 0x10, // Write block of contiguous registers 4xxxx
+    MB_FC_READ_COILS       = 0x01, ///< Read Coils (Output) Status 0xxxx
+    MB_FC_READ_INPUT_STAT  = 0x02, ///< Read Input Status (Discrete Inputs) 1xxxx
+    MB_FC_READ_REGS        = 0x03, ///< Read Holding Registers 4xxxx
+    MB_FC_READ_INPUT_REGS  = 0x04, ///< Read Input Registers 3xxxx
+    MB_FC_WRITE_COIL       = 0x05, ///< Write Single Coil (Output) 0xxxx
+    MB_FC_WRITE_REG        = 0x06, ///< Preset Single Register 4xxxx
+    MB_FC_WRITE_COILS      = 0x0F, ///< Write Multiple Coils (Outputs) 0xxxx
+    MB_FC_WRITE_REGS       = 0x10, ///< Write block of contiguous registers 4xxxx
 };
 
-//Exception Codes
+// Exception Codes
 enum {
-    MB_EX_ILLEGAL_FUNCTION = 0x01, // Function Code not Supported
-    MB_EX_ILLEGAL_ADDRESS  = 0x02, // Output Address not exists
-    MB_EX_ILLEGAL_VALUE    = 0x03, // Output Value not in Range
-    MB_EX_SLAVE_FAILURE    = 0x04, // Slave Deive Fails to process request
+    MB_EX_ILLEGAL_FUNCTION = 0x01, ///< Function Code not Supported
+    MB_EX_ILLEGAL_ADDRESS  = 0x02, ///< Output Address not exists
+    MB_EX_ILLEGAL_VALUE    = 0x03, ///< Output Value not in Range
+    MB_EX_SLAVE_FAILURE    = 0x04, ///< Slave Deive Fails to process request
 };
 
-//Reply Types
+// Reply Types
 enum {
-    MB_REPLY_OFF    = 0x01,
-    MB_REPLY_ECHO   = 0x02,
-    MB_REPLY_NORMAL = 0x03,
+    MB_REPLY_OFF    = 0x01, ///< No reply
+    MB_REPLY_ECHO   = 0x02, ///< Return the message from the bus master as an reply
+    MB_REPLY_NORMAL = 0x03, ///< Reply with adding slave data
 };
 
+#ifndef __DOXYGEN__
 typedef struct TRegister {
     word address;
     word value;
     struct TRegister* next;
 } TRegister;
+#endif
 
+/**
+ * @class Modbus
+ * @brief Modbus base class
+ */
 class Modbus {
+#ifndef __DOXYGEN__
     private:
         TRegister *_regs_head;
         TRegister *_regs_last;
@@ -72,26 +79,96 @@ class Modbus {
         byte  _len;
         byte  _reply;
         void receivePDU(byte* frame);
+#endif
 
     public:
+        /**
+         * @brief Default constructor
+         */
         Modbus();
 
+        /**
+         * @brief Add a holding register to the list
+         * @param offset register offset (PDU addressing: 0-9999)
+         * @param value default value
+         */
         void addHreg(word offset, word value = 0);
+        /**
+         * @brief Change the value of a holding register
+         * This value will be returned when bus read, the master can also modify it.
+         * @param offset register offset (PDU addressing: 0-9999)
+         * @param value new value
+         * @return true, false if register not found.
+         */
         bool Hreg(word offset, word value);
+        /**
+         * @brief Return the value of a holding register
+         * @param offset register offset (PDU addressing: 0-9999)
+         * @return register value
+         */
         word Hreg(word offset);
 
         #ifndef USE_HOLDING_REGISTERS_ONLY
-            void addCoil(word offset, bool value = false);
-            void addIsts(word offset, bool value = false);
-            void addIreg(word offset, word value = 0);
-
-            bool Coil(word offset, bool value);
-            bool Ists(word offset, bool value);
-            bool Ireg(word offset, word value);
-
-            bool Coil(word offset);
-            bool Ists(word offset);
-            word Ireg(word offset);
+        /**
+         * @brief Add a coil
+         * @param offset coil offset (PDU addressing: 0-9999)
+         * @param value default value
+         */
+        void addCoil(word offset, bool value = false);
+        /**
+         * @brief Add a discrete input
+         * @param offset input offset (PDU addressing: 0-9999)
+         * @param value default value
+         */
+        void addIsts(word offset, bool value = false);
+        /**
+         * @brief Add a input register
+         * @param offset register offset (PDU addressing: 0-9999)
+         * @param value default value
+         */
+        void addIreg(word offset, word value = 0);
+        /**
+         * @brief Change the value of a coil
+         * This value will be returned when bus read, the master can also modify it.
+         * @param offset register offset (PDU addressing: 0-9999)
+         * @param value new value
+         * @return true, false if coil not found.
+         */
+        bool Coil(word offset, bool value);
+        /**
+         * @brief Change the value of a discrete input
+         * This value will be returned when bus read,.
+         * @param offset input offset (PDU addressing: 0-9999)
+         * @param value new value
+         * @return true, false if input not found.
+         */
+        bool Ists(word offset, bool value);
+        /**
+         * @brief Change the value of an input register
+         * This value will be returned when bus read.
+         * @param offset register offset (PDU addressing: 0-9999)
+         * @param value new value
+         * @return true, false if register not found.
+         */
+        bool Ireg(word offset, word value);
+        /**
+         * @brief Return the value of a coil
+         * @param offset register offset (PDU addressing: 0-9999)
+         * @return coil value
+         */
+        bool Coil(word offset);
+        /**
+         * @brief Return the value of a discrete input
+         * @param offset input offset (PDU addressing: 0-9999)
+         * @return input value
+         */
+        bool Ists(word offset);
+        /**
+         * @brief Return the value of an input register
+         * @param offset register offset (PDU addressing: 0-9999)
+         * @return register value
+         */
+        word Ireg(word offset);
         #endif
 };
 
