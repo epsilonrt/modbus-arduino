@@ -21,6 +21,7 @@ enum {
     MB_FC_WRITE_REG        = 0x06, ///< Preset Single Register 4xxxx
     MB_FC_WRITE_COILS      = 0x0F, ///< Write Multiple Coils (Outputs) 0xxxx
     MB_FC_WRITE_REGS       = 0x10, ///< Write block of contiguous registers 4xxxx
+    MB_FC_REPORT_SERVER_ID = 0x11, ///< Report Server ID
 };
 
 // Exception Codes
@@ -55,6 +56,7 @@ class Modbus {
     private:
         TRegister *_regs_head;
         TRegister *_regs_last;
+        char * _additional_data;
 
         void readRegisters(word startreg, word numregs);
         void writeSingleRegister(word reg, word value);
@@ -79,6 +81,7 @@ class Modbus {
         byte  _len;
         byte  _reply;
         void receivePDU(byte* frame);
+        virtual void reportServerId();
 #endif
 
     public:
@@ -107,6 +110,13 @@ class Modbus {
          * @return register value
          */
         word Hreg(word offset);
+        
+        /**
+         * @brief Sets additional Data for Report Server ID function
+         * @param data data string
+         * @return the number of chars gets from data (249 max)
+         */
+        int setAdditionalServerData (const char data[]);
 
         #ifndef USE_HOLDING_REGISTERS_ONLY
         /**

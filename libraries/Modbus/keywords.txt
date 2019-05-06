@@ -26,6 +26,7 @@ Coil                    KEYWORD2
 Ists                    KEYWORD2
 Ireg                    KEYWORD2
 Hreg                    KEYWORD2
+setAdditionalServerData KEYWORD2
 
 # Constants (LITERAL1)
 MB_FC_READ_COILS       	   LITERAL1

@@ -7,6 +7,7 @@
 Modbus::Modbus() {
     _regs_head = 0;
     _regs_last = 0;
+    _additional_data = 0;
 }
 
 TRegister* Modbus::searchRegister(word address) {
@@ -138,6 +139,10 @@ void Modbus::receivePDU(byte* frame) {
             //field1 = startreg, field2 = status
             this->writeMultipleRegisters(frame,field1, field2, frame[5]);
         break;
+        
+        case MB_FC_REPORT_SERVER_ID:
+            reportServerId();
+        break;
 
         #ifndef USE_HOLDING_REGISTERS_ONLY
         case MB_FC_READ_COILS:
@@ -180,6 +185,44 @@ void Modbus::exceptionResponse(byte fcode, byte excode) {
     _frame[1] = excode;
 
     _reply = MB_REPLY_NORMAL;
+}
+
+void Modbus::reportServerId() {
+    //Clean frame buffer
+    free(_frame);
+    _len = 4;
+    if (_additional_data) {
+        _len += strlen(_additional_data);
+    }
+    _frame = (byte *) malloc(_len);
+    if (!_frame) {
+        this->exceptionResponse(MB_FC_REPORT_SERVER_ID, MB_EX_SLAVE_FAILURE);
+        return;
+    }
+    _frame[0] = MB_FC_REPORT_SERVER_ID;
+    _frame[1] = _len - 2;   //byte count
+    _frame[2] = 0x00; // Server ID
+    _frame[3] = 0xFF; // Run Indicator Status
+    if (_additional_data) { // Additional Data
+        strncpy(&_frame[4], _additional_data, strlen(_additional_data));
+    }
+    _reply = MB_REPLY_NORMAL;
+}
+
+int Modbus::setAdditionalServerData (const char data[]) {
+    
+    free (_additional_data);
+    if (data) {
+        size_t l = strlen(data) + 1;
+        
+        _additional_data = (char *) malloc(l);
+        if (_additional_data) {
+            
+            strcpy(_additional_data, data);
+            return l;
+        }
+    }
+    return 0;
 }
 
 void Modbus::readRegisters(word startreg, word numregs) {
