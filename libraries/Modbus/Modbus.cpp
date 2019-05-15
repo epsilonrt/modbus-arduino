@@ -1,6 +1,6 @@
 /*
     Modbus.cpp - Source for Modbus Base Library
-    Copyright (C) 2014 André Sarmento Barbosa
+    Copyright (C) 2014 AndrÃ© Sarmento Barbosa
 */
 #include "Modbus.h"
 
@@ -204,7 +204,7 @@ void Modbus::reportServerId() {
     _frame[2] = 0x00; // Server ID
     _frame[3] = 0xFF; // Run Indicator Status
     if (_additional_data) { // Additional Data
-        strncpy(&_frame[4], _additional_data, strlen(_additional_data));
+        strncpy((char *) &_frame[4], _additional_data, strlen(_additional_data));
     }
     _reply = MB_REPLY_NORMAL;
 }
